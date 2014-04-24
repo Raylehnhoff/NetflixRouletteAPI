@@ -19,24 +19,53 @@ namespace NetflixRouletteAPI
         }
         public MediaObject GetData(string title)
         {
-            using (var client = new WebClient())
-            {
-                client.BaseAddress = API_BASE_URL;
-                Stream stream = client.OpenRead(string.Format("?title={0}", System.Web.HttpUtility.UrlEncode(title)));
-                var reader = new StreamReader(stream);
-                MediaObject media = JsonConvert.DeserializeObject<MediaObject>(reader.ReadToEnd());
-                return media;
-            }
+            return getData(title,null);
         }
-        public MediaObject GetData(string title, int year)
+        public MediaObject GetData(string title, int? year)
         {
-            using (var client = new WebClient())
+            return getData(title, year);
+        }
+        private MediaObject getData(string title, int? year)
+        {
+            try
             {
-                client.BaseAddress = API_BASE_URL;
-                Stream stream = client.OpenRead(string.Format("?title={0}&year={1}", System.Web.HttpUtility.UrlEncode(title), year));
-                var reader = new StreamReader(stream);
-                MediaObject media = JsonConvert.DeserializeObject<MediaObject>(reader.ReadToEnd());
-                return media;
+                using (var client = new WebClient())
+                {
+                    client.BaseAddress = API_BASE_URL;
+                    StringBuilder UrlBuilder = new StringBuilder();
+                    //The first token is always a ?, so we can start there.
+                    UrlBuilder.Append("?");
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        UrlBuilder.AppendFormat("title={0}", title);
+                    }
+                    if (!string.IsNullOrEmpty(title) && year.HasValue)
+                    {
+                        UrlBuilder.Append("&");
+                    }
+                    if (year.HasValue)
+                    {
+                        UrlBuilder.AppendFormat("year={0}", year.Value);
+                    }
+
+                    Stream stream = client.OpenRead(UrlBuilder.ToString());
+                    var reader = new StreamReader(stream);
+                    MediaObject media = JsonConvert.DeserializeObject<MediaObject>(reader.ReadToEnd());
+                    if (string.IsNullOrEmpty(media.show_title))
+                    {
+                        media.success = false;
+                        media.mediatype = MediaObject.MediaType.Error;
+                    }
+                    else
+                    {
+                        media.success = true;
+                    }
+                    return media;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new MediaObject() { success = false, mediatype = MediaObject.MediaType.Error };
             }
         }
     }

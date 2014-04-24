@@ -11,7 +11,7 @@ namespace NetflixRouletteTester
         {
             
             var req = new NetflixRouletteAPI.NetflixRouletteAPI();
-            var res = req.GetData("Justice League");
+            var res = req.GetData("House of Cards");
             foreach (PropertyInfo pi in res.GetType().GetProperties())
             {
                 Console.WriteLine(pi.Name + ": " + pi.GetValue(res));
