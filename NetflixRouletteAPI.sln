@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetflixRouletteAPI", "NetflixRouletteAPI\NetflixRouletteAPI.csproj", "{2CED86C0-A928-41FF-AFDC-C75F5B369396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetflixRouletteTester", "NetflixRouletteTester\NetflixRouletteTester.csproj", "{417B8081-781D-4DF9-BE8C-04692C4B9D08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CED86C0-A928-41FF-AFDC-C75F5B369396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CED86C0-A928-41FF-AFDC-C75F5B369396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CED86C0-A928-41FF-AFDC-C75F5B369396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CED86C0-A928-41FF-AFDC-C75F5B369396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{417B8081-781D-4DF9-BE8C-04692C4B9D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417B8081-781D-4DF9-BE8C-04692C4B9D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417B8081-781D-4DF9-BE8C-04692C4B9D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417B8081-781D-4DF9-BE8C-04692C4B9D08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
